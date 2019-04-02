@@ -306,6 +306,16 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     return nil;
 }
 
+[controller addScriptMessageHandler:handler name:@"myMessageHandler"];
+
+// this is in handler’s class implementation
+- (void)userContentController:(WKUserContentController *)userContentController
+      didReceiveScriptMessage:(WKScriptMessage *)message {
+
+ // this is invoked with the message sent from JS
+
+}
+
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [channel invokeMethod:@"onState" arguments:@{@"type": @"startLoad", @"url": webView.URL.absoluteString}];
 }
