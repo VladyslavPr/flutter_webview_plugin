@@ -303,17 +303,14 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
         [webView loadRequest:navigationAction.request];
     }
 	    
-	[controller addScriptMessageHandler:handler name:@"myMessageHandler"];
+	[configuration.setContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
 
     return nil;
 }
 
-// this is in handler’s class implementation
-- (void)userContentController:(WKUserContentController *)userContentController
-      didReceiveScriptMessage:(WKScriptMessage *)message {
-
- // this is invoked with the message sent from JS
-
+- (void)userContentController:(WKUserContentController *)userContentController 
+    didReceiveScriptMessage:(WKScriptMessage *)message {
+            //Handle incoming messages from Javascript
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
