@@ -60,7 +60,6 @@ class FlutterWebviewPlugin {
         break;
       case 'linkBridge':
           _lightningLinkStream.add(call.arguments['data']);
-          linkBridge();
           break;
       case 'onWebviewMessage':
     }
