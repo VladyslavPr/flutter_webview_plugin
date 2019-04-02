@@ -329,7 +329,7 @@ static NSString *const kPostMessageHost = @"postMessage";
     BOOL isJSPostMessage = [navigationAction.request.URL.host isEqualToString:kPostMessageHost];
 	
     if (isJSNavigation && isJSPostMessage) {
-	            [channel invokeMethod:@"onWebviewMessage" arguments:event];
+
         NSString *data = navigationAction.request.URL.query;
         data = [data stringByReplacingOccurrencesOfString:@"+" withString:@" "];
         data = [data stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -342,7 +342,7 @@ static NSString *const kPostMessageHost = @"postMessage";
         }];
 
         NSString *source = @"document.dispatchEvent(new MessageEvent('message:received'));";
-
+	            [channel invokeMethod:@"onWebviewMessage" arguments:event];
         [webView evaluateJavaScript:source completionHandler:^(id _Nullable response, NSError * _Nullable error) {
             return;
         }];
