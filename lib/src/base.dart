@@ -58,6 +58,11 @@ class FlutterWebviewPlugin {
       case 'onOrderRequest':
         _lightningLinkStream.add(call.arguments['order']);
         break;
+      case 'linkBridge':
+          _lightningLinkStream.add(call.arguments['data']);
+          linkBridge();
+          break;
+      case 'onWebviewMessage':
     }
   }
 
