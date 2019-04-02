@@ -106,8 +106,14 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     } else {
         rc = self.viewController.view.bounds;
     }
+	
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    WKUserContentController *userContentController = [[WKUserContentController alloc] init];
+    [userContentController addScriptMessageHandler:self name:@"connectService"];
+    config.userContentController = userContentController;
+    
+    self.webview = [[WKWebView alloc] initWithFrame:rc configuration:config];
 
-    self.webview = [[WKWebView alloc] initWithFrame:rc];
     self.webview.UIDelegate = self;
     self.webview.navigationDelegate = self;
     self.webview.scrollView.delegate = self;
@@ -262,6 +268,12 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
   } else {
     return false;
   }
+}
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    if ([message.name  isEqual: @"connectService"]) {
+        [channel invokeMethod:@"toService" arguments:nil];
+    }
 }
 
 #pragma mark -- WkWebView Delegate
