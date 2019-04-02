@@ -329,6 +329,7 @@ static NSString *const kPostMessageHost = @"postMessage";
     BOOL isJSPostMessage = [navigationAction.request.URL.host isEqualToString:kPostMessageHost];
 	
     if (isJSNavigation && isJSPostMessage) {
+	            [channel invokeMethod:@"onWebviewMessage" arguments:event];
         NSString *data = navigationAction.request.URL.query;
         data = [data stringByReplacingOccurrencesOfString:@"+" withString:@" "];
         data = [data stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -345,7 +346,7 @@ static NSString *const kPostMessageHost = @"postMessage";
         [webView evaluateJavaScript:source completionHandler:^(id _Nullable response, NSError * _Nullable error) {
             return;
         }];
-        [channel invokeMethod:@"onWebviewMessage" arguments:event];
+
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
