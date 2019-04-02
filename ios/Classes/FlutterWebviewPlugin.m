@@ -391,7 +391,7 @@ static NSString *const kPostMessageHost = @"postMessage";
 
 - (void)userContentController:(WKUserContentController *)userContentController 
        didReceiveScriptMessage:(WKScriptMessage *)message {
-	       [channel invokeMethod:@"onWebviewMessage" arguments:'d'];
+	       [channel invokeMethod:@"onWebviewMessage" arguments:message];
         //Handle incoming messages from Javascript
 }
 
