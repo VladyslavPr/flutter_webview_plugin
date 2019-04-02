@@ -123,9 +123,6 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     }
 
     _enableZoom = [withZoom boolValue];
-    
-    WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-    [self.configuration.setContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
 
     UIViewController* presentedViewController = self.viewController.presentedViewController;
     UIViewController* currentViewController = presentedViewController != nil ? presentedViewController : self.viewController;
@@ -301,6 +298,9 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
 
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration
     forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+	    
+    WKUserContentController *userContentController = [[WKUserContentController alloc] init];
+    [configuration.setContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
 
     if (!navigationAction.targetFrame.isMainFrame) {
         [webView loadRequest:navigationAction.request];
