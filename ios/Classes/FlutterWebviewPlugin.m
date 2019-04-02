@@ -311,7 +311,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
 
 - (void)userContentController:(WKUserContentController *)userContentController 
     didReceiveScriptMessage:(WKScriptMessage *)message {
-	    printf(message);
+	    NSLog(@"%@", message);
             //Handle incoming messages from Javascript
 }
 
