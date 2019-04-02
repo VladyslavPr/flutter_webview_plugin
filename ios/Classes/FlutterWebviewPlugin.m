@@ -302,11 +302,11 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     if (!navigationAction.targetFrame.isMainFrame) {
         [webView loadRequest:navigationAction.request];
     }
+	    
+	[controller addScriptMessageHandler:handler name:@"myMessageHandler"];
 
     return nil;
 }
-
-[controller addScriptMessageHandler:handler name:@"myMessageHandler"];
 
 // this is in handler’s class implementation
 - (void)userContentController:(WKUserContentController *)userContentController
