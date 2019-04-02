@@ -109,7 +109,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
 	
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-    [userContentController addScriptMessageHandler:self name:@"connectService"];
+    [userContentController addScriptMessageHandler:self name:@"myOwnJSHandler"];
     config.userContentController = userContentController;
     
     self.webview = [[WKWebView alloc] initWithFrame:rc configuration:config];
