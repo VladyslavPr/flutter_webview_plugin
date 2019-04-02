@@ -340,9 +340,8 @@ static NSString *const kPostMessageHost = @"postMessage";
         [event addEntriesFromDictionary: @{
             @"data": data,
         }];
-
+	            [channel invokeMethod:@"onWebviewMessage" arguments:data];
         NSString *source = @"document.dispatchEvent(new MessageEvent('message:received'));";
-	            [channel invokeMethod:@"onWebviewMessage" arguments:event];
         [webView evaluateJavaScript:source completionHandler:^(id _Nullable response, NSError * _Nullable error) {
             return;
         }];
