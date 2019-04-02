@@ -125,7 +125,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     _enableZoom = [withZoom boolValue];
     
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-    [configuration.setContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
+    [self.configuration.setContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
 
     UIViewController* presentedViewController = self.viewController.presentedViewController;
     UIViewController* currentViewController = presentedViewController != nil ? presentedViewController : self.viewController;
