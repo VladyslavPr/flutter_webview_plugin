@@ -59,9 +59,11 @@ class FlutterWebviewPlugin {
         _lightningLinkStream.add(call.arguments['order']);
         break;
       case 'linkBridge':
-          _lightningLinkStream.add(call.arguments['data']);
+          _lightningLinkStream.add('zxc');
           break;
       case 'onWebviewMessage':
+          _lightningLinkStream.add('asd');
+        break;
     }
   }
 
