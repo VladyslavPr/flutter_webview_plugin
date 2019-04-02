@@ -377,13 +377,22 @@ static NSString *const kPostMessageHost = @"postMessage";
 }
 
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration
-    forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {	   
+    forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {	
+	    
+	    WKUserContentController *userContentController = [[WKUserContentController alloc] init];
+	    [configuration.userContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
 
     if (!navigationAction.targetFrame.isMainFrame) {
         [webView loadRequest:navigationAction.request];
     }    
 
     return nil;
+}
+
+- (void)userContentController:(WKUserContentController *)userContentController 
+       didReceiveScriptMessage:(WKScriptMessage *)message {
+	       [channel invokeMethod:@"onWebviewMessage" arguments:'d'];
+        //Handle incoming messages from Javascript
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
