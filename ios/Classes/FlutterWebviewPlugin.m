@@ -300,7 +300,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
 	    
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-    [configuration.setContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
+    [configuration.userContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
 
     if (!navigationAction.targetFrame.isMainFrame) {
         [webView loadRequest:navigationAction.request];
