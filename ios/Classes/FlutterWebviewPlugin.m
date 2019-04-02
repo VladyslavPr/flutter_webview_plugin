@@ -303,7 +303,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
         [webView loadRequest:navigationAction.request];
     }
 	    WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-	    configuration.userContentController addScriptMessageHandler: self name:@"myOwnJSHandler";
+	    [configuration.setContentController addScriptMessageHandler: self name:@"myOwnJSHandler"];
 	    
 
     return nil;
