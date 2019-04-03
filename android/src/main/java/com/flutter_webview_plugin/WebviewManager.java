@@ -362,9 +362,9 @@ class WebviewManager {
     public class WebAppInterface {
         @JavascriptInterface
         public void getPostMessage(String value){
-            Map<String, Object> orderMap = new HashMap<>();
-            orderMap.put("order", value);
-            FlutterWebviewPlugin.channel.invokeMethod("onOrderRequest", orderMap);
+            Map<String, Object> messageMap = new HashMap<>();
+            messageMap.put("message", value);
+            FlutterWebviewPlugin.channel.invokeMethod("onAndroidPostMessage", messageMap);
         }
     }
 }
