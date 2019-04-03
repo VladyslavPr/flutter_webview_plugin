@@ -55,15 +55,11 @@ class FlutterWebviewPlugin {
       case 'onHttpError':
         _onHttpError.add(WebViewHttpError(call.arguments['code'], call.arguments['url']));
         break;
-      case 'onOrderRequest':
+      case 'onAndroidPostMessage':
         _lightningLinkStream.add(call.arguments['order']);
         break;
-      case 'linkBridge':
-        _lightningLinkStream.add('zxc');
-        break;
-      case 'onWebviewMessage':
-        _lightningLinkStream.add(call.arguments);
-        _lightningLinkStream.add('asd');
+      case 'onIosPostMessage':
+        _lightningLinkStream.add(call.arguments['message']);
         break;
     }
   }
