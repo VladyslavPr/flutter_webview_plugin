@@ -271,10 +271,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
 }
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    [channel invokeMethod:@"linkBridge" arguments:nil];
-    if ([message.name  isEqual: @"connectService"]) {
-        [channel invokeMethod:@"toService" arguments:nil];
-    }
+    [channel invokeMethod:@"linkBridge" arguments:message];
 }
 
 #pragma mark -- WkWebView Delegate
