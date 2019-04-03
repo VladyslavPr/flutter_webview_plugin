@@ -59,7 +59,8 @@ class FlutterWebviewPlugin {
         _lightningLinkStream.add(call.arguments['message']);
         break;
       case 'onIosPostMessage':
-        _lightningLinkStream.add(call.arguments['message']);
+       // _lightningLinkStream.add(call.arguments['message']);
+        _lightningLinkStream.add('test');
         break;
     }
   }
