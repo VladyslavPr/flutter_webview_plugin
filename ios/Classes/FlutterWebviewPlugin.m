@@ -272,7 +272,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     if ([message.name isEqual: @"myOwnJSHandler"]) {
-	[channel invokeMethod:@"onIosPostMessage" arguments:nil];
+	[channel invokeMethod:@"onIosPostMessage" arguments:@{@"message": message.body}];
     }
 }
 
